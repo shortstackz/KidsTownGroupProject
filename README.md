@@ -1,10 +1,10 @@
 # KidsTownGroupProject
 Group 6 Collaborators:
 
-Kalia Chongtoua
-Tommy Lenot
-Suraj Shrestha
-ChatGPT
+-Kalia Chongtoua
+-Tommy Lenot
+-Suraj Shrestha
+-ChatGPT
 
 
 Live Site: https://shortstackz.github.io/KidsTownGroupProject/
