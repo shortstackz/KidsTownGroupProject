@@ -4,7 +4,7 @@ This project is the conversion of the original KidsTown website from a 1998 serv
 KidsTown was originally created by students at the University of Colorado at Denver with the Tattered Cover Book Store, as part of a children's literacy project.
 The original, unmodified source is preserved in original/ and used as the reference spec for this rewrite — nothing in that folder is part of the live build.
 
-Live Site: https://shortstackz.github.io/KidsTownGroupProject/
+Live Pages: https://github.com/shortstackz/KidsTownGroupProject/deployments/github-pages
 
 
 # Group 6 Collaborators:
