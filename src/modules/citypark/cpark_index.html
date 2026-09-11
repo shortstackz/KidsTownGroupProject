@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KidsTown City Park: Your Big Journey</title>
+<style>
+  body {
+    font-family: Georgia, serif;
+    background: #F5F5DC;
+    color: #000;
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 0 1.25rem 3rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
+  }
+  h1 { text-align: center; }
+  hr { margin: 1.5rem 0; }
+  img { max-width: 100%; height: auto; }
+  #intro input[type="text"] {
+    font-size: 1rem;
+    padding: 0.4rem;
+    margin-right: 0.5rem;
+  }
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.35rem 0.5rem 0.35rem 0;
+    cursor: pointer;
+  }
+  #choices { margin-top: 1.5rem; }
+  a.home-link { display: inline-block; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>KidsTown City Park - Your Big Journey</h1>
+<hr>
+
+<div id="intro">
+  <p>Hello, and welcome to the KidsTown City Park. You are about to go on a
+  big journey through the park. Type in your first name, then click
+  "Let's Go!!" to get started.</p>
+  <input type="text" id="nameInput" size="10" placeholder="Your name">
+  <button id="startBtn">Let's Go !!</button>
+</div>
+
+<div id="story" style="display:none;">
+  <h2 id="storyTitle"></h2>
+  <blockquote id="storyText"></blockquote>
+  <div id="choices"></div>
+</div>
+
+<script>
+  // --- The converted content (see citypark.json — same data, produced by
+  // parse_citypark.py from the original data/citypark/page1..18 files) ---
+  const PAGES = [{"id": 1, "text": "Your big adventure starts out just like any other lazy summer day.  The birds are chirping outside, and you can just tell from the smell of the air that this day is going to be really hot.  \n\n<P>Your friend calls out from the street, \"{{name}}, why don't you come outside and play?  It looks like its going to be a great day!\"  You decide that yes, you will go out and play today.  You pull on your favorite blue shirt and head outside.  \n\n<P>As you step out onto the porch, you feel that something is not quite\nright.  The birds are no longer chirping.  The light seems too bright.\nAll of a sudden, you can't see anything at all.  You fall into a deep\nsleep.  in a strange place.<P>", "choices": [{"label": "You wake up", "target": 2}, {"label": "Back", "target": "intro"}]}, {"id": 2, "text": "<IMG SRC=\"../../../graphics/citypark/park.gif\" ALT=\"The Park\" WIDTH=90\nHEIGHT=100 HSPACE=10\nVSPACE=10 ALIGN=left>Bright sunlight streams into your eyes, making it hard to see.  Your eyes finally adjust and you see that you are no longer on your front \nporch.  You look around and see that you seem to be in a very large park.\nThere are big trees around the edge of the park, and lots of grass.  There are other people in the park, but for some reason, they don't look right.  The air feels much cooler than it\n\n did on your porch.<P>\n\nYou see a girl and her dog.  Do you want to walk up to them? \n&nbsp;\n\n \n\n<P>", "choices": [{"label": "Yes", "target": 3}, {"label": "No", "target": 4}, {"label": "Back", "target": 1}]}, {"id": 3, "text": "<IMG SRC=\"../../../graphics/citypark/girl.gif\" ALT=\"Girl and Dog\" WIDTH=90\nHEIGHT=100 HSPACE=10 VSPACE=10 ALIGN=right>\nAs you begin to get closer to the girl, you notice what is wrong with her.\nYou can see right through her!  She looks like any other girl,\nbut she also kind of looks like ghosts do in the movies.\nYou can even see through her dog!  You finally say \"Hello,\nmy name is {{name}}.  What is your name?\"<P>\n\nShe doesn't even notice you.  You reach out to touch her,\nand your hand goes right through her!<P>\n\nYou think to yourself, \"Well, these people aren't going to be much help.\"<P>\n\n<IMG SRC=\"../../../graphics/citypark/book.gif\" ALT=\"Old Book\" WIDTH=55\nHEIGHT=72 HSPACE=10\nVSPACE=10 ALIGN=right>You walk back to the place where you first woke up and\nyou see a book.  \"That wasn't there before,\" you think to yourself.\nYou reach down and grab it.<P>\n\nThe book has a leather cover and looks very old.\nThe writing on the cover is in a language you have never seen before.\nYou open the book and see that the first page says,\n\"{{name}}, FIND THE COMPASS.\"  The rest of the pages are strangely blank.<P>\n\nSo, you are supposed to find the compass.\nA compass is a thing that helps you find your way,\nand since you are very lost, finding your way sounds like a great idea.\nYou look around and see a stand about 50 feet away that looks like it\nhas something on it.  You \ntowards the stand.\n\n<P>", "choices": [{"label": "walk", "target": 5}, {"label": "Back", "target": 2}]}, {"id": 4, "text": "<IMG SRC=\"../../../graphics/citypark/book.gif\" ALT=\"Old Book\" WIDTH=55\nHEIGHT=72 HSPACE=10\nVSPACE=10 ALIGN=right>You walk back to the place where you first woke up and\nyou see a book.  \"That wasn't there before,\" you think to yourself.\nYou reach down and grab it.<P>\n\nThe book has a leather cover and looks very old.  The writing on the cover is\nin a language you have never seen before.  You open the book and see that the\nfirst page says, \"{{name}}, FIND THE COMPASS.\"<P>\n\nSo, you are supposed to find the compass.  A compass is a thing that helps you\nfind your way, and since you are very lost, finding your way sounds like a\ngreat idea.  You look around and see a stand about 50 feet away that looks\nlike it has something on it.  You \ntowards the stand.<P>", "choices": [{"label": "walk", "target": 5}, {"label": "Back", "target": 2}]}, {"id": 5, "text": "<IMG SRC=\"../../../graphics/citypark/compass.gif\"\nALT=\"Compass\" WIDTH=60 HEIGHT=60 HSPACE=10 VSPACE=10 ALIGN=right>As you approach the stand, you notice two things.\nFirst, you see that there is a compass on the stand.  That is interesting.\nSecond, you see a small reddish bird next to the compass.  Unlike the \npeople still with you here in the park, you can't see through the bird.\nIt looks kind of like a parakeet.<P>\n\nYou get to the stand.  As you reach for the compass, you feel the leather book in your hand getting warm.  At that same moment the bird says, \"Hey {{name}}, you should probably look in the book.\"<P>\n\n<IMG SRC=\"../../../graphics/citypark/bird.gif\" WIDTH=84 HEIGHT=95\nALIGN=left ALT=\"bird\" HSPACE=10\nVSPACE=10>The bird startles you.  As far as you know, only parrots talk, and this certainly doesn't look like a parrot.<P>\n\n<IMG SRC=\"../../../graphics/citypark/directions.gif\" ALT=\"Directions\"\nWIDTH=100 HEIGHT=111\nHSPACE=10 VSPACE=10 ALIGN=right>You decide to do what it says.  You look\nin the book.  The first page still says, \"{{name}}, FIND THE COMPASS,\" but\nnow, there is \n\nwriting on the second page.  It says, \"{{name}}, GO WEST AND FIND THE\nDOME.\"<P>\n\nYou take the compass and find that you are facing North.  Using the\ndirections of North, South, East and West from the picture, which way do\nyou have to turn in order to be facing West?  \n\nor ?\n\n<P>", "choices": [{"label": "Left", "target": 6}, {"label": "Right", "target": 7}, {"label": "Back", "target": 4}]}, {"id": 6, "text": "<IMG SRC=\"../../../graphics/citypark/directionl.gif\" ALT=\"Directions\"\nWIDTH=100 HEIGHT=111\nHSPACE=10 VSPACE=10 ALIGN=right>You did it {{name}}!  If you are facing North, and you take a little turn to your left, you will then be facing West.<P>\nLet's .\nWay to go!\n\n<P>", "choices": [{"label": "continue", "target": 8}, {"label": "Back", "target": 5}]}, {"id": 7, "text": "<IMG SRC=\"../../../graphics/citypark/directionr.gif\" ALT=\"Compass\"\nWIDTH=100 HEIGHT=111 HSPACE=10\nVSPACE=10 ALIGN=right>{{name}}, this is kind of a tricky question.  Looking again at the picture that has N, S, E and W on it, you will see that if you turn \n\nto your right when you are facing North, you will then be facing East.\n<P>\n\n<P>", "choices": [{"label": "Back", "target": 5}]}, {"id": 8, "text": "<IMG SRC=\"../../../graphics/citypark/mountains.gif\"\nALT=\"Compass\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nYou leave the park and start walking West on a paved street.  After you have gone a little way you notice that way off in the distance, you can see snow capped mountains.  \n<IMG SRC=\"../../../graphics/citypark/bird.gif\" WIDTH=84 HEIGHT=95\nALIGN=left ALT=\"bird\" HSPACE=10\nVSPACE=10>You look over your shoulder and see that the bird is following you.  It says, \"Hey, {{name}}, don't mind me.  I'm just here to help you out if you \n\nget in any trouble.\"<P>\n\nYou decide to .\n\n<P>", "choices": [{"label": "Continue", "target": 9}, {"label": "Back", "target": 7}]}, {"id": 9, "text": "<IMG SRC=\"../../../graphics/citypark/mountains.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nThe first street you pass is called Apple Street.  The next street you pass is called Birch Street.  \n\n<P>\n\nWhich street do you think would come next, \nor ?\n\n<P>", "choices": [{"label": "Willow Street", "target": 10}, {"label": "Cherry Street", "target": 11}, {"label": "Back", "target": "back"}]}, {"id": 10, "text": "<IMG SRC=\"../../../graphics/citypark/mountains.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nIf you were thinking that all of these streets had the names of trees,\nthen Willow Street might come next.  But Cherry is also the name of a tree.\nThere must be another way to choose.\n\n<P>", "choices": [{"label": "Back", "target": 9}]}, {"id": 11, "text": "<IMG SRC=\"../../../graphics/citypark/mountains.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\n{{name}}, you sure are good at figuring things out!\nYou noticed that Apple Street started with the letter A,\nand Birch Street started with the letter B.\nSo it would make sense to think that the next street would start with a C,\nand it does!  Cherry Street is the next street.\n<P>\nNow that you have that figured out, you \ndown the street, looking\nfor the dome.<P>", "choices": [{"label": "continue", "target": 12}, {"label": "Back", "target": 9}]}, {"id": 12, "text": "<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Dome\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nAfter walking several blocks you finally see the glint of the dome up\nahead of you.<P>  <IMG SRC=\"../../../graphics/citypark/bird.gif\" WIDTH=84\nHEIGHT=95 ALIGN=left\nALT=\"bird\" HSPACE=10 VSPACE=10>Out of nowhere, the bird says, \"Hey, {{name}}.\nI've got a little riddle for you. \n\n<P>\n\nI happen to know that the address of the dome is 1369 Kids Town Lane.\nIt is also on the right side of the street.\nI'll give you a clue as to how to get home if you can tell me what side\nof the street my house is on.\n<P>\nAll I'll tell you is that the address of my house is even,\nmeaning that the last number of the address ends with an even number.\n<P>\n<P>\nWhat side of the street do you suppose my house is on? &nbsp;or&nbsp;?\"\n<P>", "choices": [{"label": "Left", "target": 14}, {"label": "Right", "target": 13}, {"label": "Back", "target": 11}]}, {"id": 13, "text": "<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nWow {{name}}, that was a hard riddle.  The dome has an odd address.\nOdd addresses end with 1, 3, 5, 7, or 9.\nThe dome is on the right side of the street.\n<P>  <IMG SRC=\"../../../graphics/citypark/bird.gif\" WIDTH=84 HEIGHT=95\nALIGN=left ALT=\"bird\"\nHSPACE=10 VSPACE=10>  That makes you think odd addresses are on one side\nof the street and even addresses are on the other side of the street.\nThe bird's house \nhas an even address (it ends with 2, 4, 6, or 8)\nso it is on the opposite side of the house as the dome.\nTherefore it is on the left side of the street.\n\n<P>\n\n<P>", "choices": [{"label": "Back", "target": 12}]}, {"id": 14, "text": "<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nNice work {{name}}. That riddle was especially hard.\nThis is how you solved the puzzle:<P>\nThe dome has an odd address and is on the right side of the street.\nOdd addresses end with 1, 3, 5, 7, or 9.\n<P>\n<IMG SRC=\"../../../graphics/citypark/bird.gif\" WIDTH=84 HEIGHT=95\nALIGN=left ALT=\"bird\"\nHSPACE=10 VSPACE=10>  That makes you think odd addresses are on one\nside of the street and even addresses are on the other side of the street.\nAnd that is exactly the way it is.\nThe bird's house has an even address (it ends with 2, 4, 6, 8 or 0)\nso it is on the opposite side of the house as the dome.\nTherefore it is on the left side of the street.\n\n<P>\nHere is your .\n<P>", "choices": [{"label": "clue", "target": 15}, {"label": "Back", "target": 12}]}, {"id": 15, "text": "<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Dome\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>The bird\nsays to you, \"{{name}}, the answer has been in your hands the whole time.\"\nYou realize that the book in your hands is getting warm again.\nYou open it up.  You see that the first two pages say the same thing,\nbut now there is a third page.\n<P>\n\n<IMG SRC=\"../../../graphics/citypark/bird.gif\"\nALT=\"Bird\" WIDTH=84 HEIGHT=95 HSPACE=10 VSPACE=10 ALIGN=left>The page says,\n\"{{name}}, this journey is over.\nThere will be more to come, but now it is time to go home.\nClose your eyes, count backwards from 10 to 1 and you will be back to\nwhere you began.\" <P>\n\nWhich way do you decide to count? <P>\n\n <P>\n\n<P>\n\n <P>", "choices": [{"label": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10", "target": 16}, {"label": "10, 9, 8, 7, 6, 5, 4, 3, 2, 1", "target": 17}, {"label": "2, 4, 6, 8, 10", "target": 18}]}, {"id": 16, "text": "<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Mountains\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>You\nclose your eyes and count from 1 to 10.\n<P>\n1, 2, 3, 4, 5, 6, 7, 8, 9, 10<P>\nYou open your eyes and see that nothing has changed.\nYou are still in the same spot by the dome!\n<P>\nThen you realize that you were supposed to count backwards,\nstarting at 10 and ending at 1.<P>\nYou decide to \nagain.<P>", "choices": [{"label": "try", "target": 15}, {"label": "Back", "target": 15}]}, {"id": 17, "text": "You close your eyes and count from 10 down to 1.<P>\n10, 9, 8, 7, 6, 5, 4, 3, 2, 1<P>\nYou try to open your eyes, but you can't.\nSuddenly, the air is hot again, and you hear the birds chirping.\n<P>\nYou are finally able to open your eyes.\nWhen you do, you realize that you are once again on your front porch.\nYou see your friend standing in the street.\n<P>\nShe says, \"{{name}}, come on!  Let's go play!\"<P>\nWell, she doesn't seem to have noticed that you were gone for a little while.\nYou decide not to bring it up.\n<BR><BR>\nIt's time for another journey... let's go explore the rest of KidsTown!\n\n<P>\n<P>", "choices": [{"label": "Back to Kids Town", "target": "home"}, {"label": "Back", "target": 15}]}, {"id": 18, "text": "You close your eyes and count from 2 to 10 by even numbers.<P>\n<IMG SRC=\"../../../graphics/citypark/dome.gif\"\nALT=\"Dome\" WIDTH=100 HEIGHT=90 HSPACE=10 VSPACE=10 ALIGN=right>\nYou open your eyes and see that nothing has changed.\nYou are still in the same spot by the dome!\n<P>\nThen you realize that you were supposed to count backwards,\nstarting at 10 and ending at 1.\nInstead, you counted by evens, from 2 to 10.<P>\nYou decide to \nagain.<P>", "choices": [{"label": "try", "target": 15}, {"label": "Back", "target": 15}]}];
+
+  const pagesById = Object.fromEntries(PAGES.map(p => [p.id, p]));
+
+  let state = { name: "My friend", current: 1, from: null };
+
+  function render(pageId) {
+    const page = pagesById[pageId];
+    if (!page) return;
+
+    state.from = state.current;
+    state.current = pageId;
+
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("story").style.display = "block";
+
+    document.getElementById("storyTitle").textContent = `${state.name}'s Big Journey`;
+
+    const html = page.text.replaceAll("{{name}}", state.name);
+    document.getElementById("storyText").innerHTML = html;
+
+    const choicesEl = document.getElementById("choices");
+    choicesEl.innerHTML = "";
+
+    page.choices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice.label;
+      btn.addEventListener("click", () => handleChoice(choice.target));
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function handleChoice(target) {
+    if (target === "back") {
+      render(state.from);
+    } else if (target === "intro") {
+      document.getElementById("story").style.display = "none";
+      document.getElementById("intro").style.display = "block";
+    } else if (target === "home") {
+      // In the full site this returns to the KidsTown home module (KEY=1000).
+      // Wired up once src/core/router.js exists; placeholder for now:
+      window.location.href = "../../index.html";
+    } else {
+      render(target);
+    }
+  }
+
+  document.getElementById("startBtn").addEventListener("click", () => {
+    const typed = document.getElementById("nameInput").value.trim();
+    state.name = typed || "My friend";
+    render(1);
+  });
+</script>
+
+</body>
+</html>
