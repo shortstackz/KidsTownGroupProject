@@ -1,149 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KidsTown — Rebuilding the Town</title>
-<meta name="description" content="KidsTown is being rebuilt from a 1998 CGI site into a modern browser-based site.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #FBF6E9;
-    --ink: #2B2118;
-    --ink-soft: #6B5D4F;
-    --brick: #C1443B;
-    --sky: #3E7CB1;
-    --panel: #FFFDF7;
-  }
+<HTML>
+<HEAD>
+  <TITLE>Visit KidsTown!</TITLE>
+  <meta name="description" content="KidsTown - web site produced by the Children's Literacy Project designed to promote children's literacy"><meta name="keywords" content="literacy, family, children, games, fun, education, educational games, edutainment">
+  <meta name="verify-v1" content="xnUF3lOhts6NXGI4oQBDkimDkW5YceC+y9fApyG/FfQ=" />
+</HEAD>
 
-  * { box-sizing: border-box; }
+<BODY BGCOLOR="#EEE2B4" TEXT="BLACK" ALINK="RED" LINK="BLUE" VLINK="PURPLE">
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Nunito Sans', sans-serif;
-    padding: 2rem 1.25rem;
-  }
+<DIV ALIGN="CENTER">
+<B>
+<FONT SIZE=+4>KidsTown</FONT><BR><FONT SIZE=+2>Visitor Center</FONT>
+</B>
+</DIV>
 
-  main {
-    max-width: 30rem;
-    text-align: center;
-  }
+<BR CLEAR=ALL>
 
-  .town-graphic {
-    width: 155px;
-    height: auto;
-    margin-bottom: 1.5rem;
-    animation: settle-in 0.6s ease-out;
-  }
+<DIV ALIGN="CENTER">
+<FONT SIZE=+2><B><A HREF="./cgi-bin/kt.cgi?KEY=1000">Click to visit
+KidsTown.</A></B></FONT>
 
-  @media (prefers-reduced-motion: reduce) {
-    .town-graphic { animation: none; }
-  }
+<BR><BR>
+<DIV ALIGN="CENTER">
+  <A HREF="./cgi-bin/kt.cgi?KEY=1000">
+    <IMG SRC="graphics\home\home\hometown.gif"
+     LOWSRC="graphics/home/hometown-lowsrc.gif"
+     ALT="Go To KidsTown"
+     WIDTH="155" HEIGHT="159" HSPACE="0" VSPACE="0"
+     BORDER="1"></A>
+</DIV>
 
-  @keyframes settle-in {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  h1 {
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2.25rem, 6vw, 3rem);
-    margin: 0 0 0.5rem;
-    color: var(--ink);
-  }
-
-  p.tagline {
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 1.5rem;
-  }
-
-  .status {
-    display: inline-block;
-    background: var(--panel);
-    border: 1px solid rgba(43, 33, 24, 0.12);
-    border-radius: 999px;
-    padding: 0.5rem 1.1rem;
-    font-size: 0.9375rem;
-    color: var(--ink);
-    margin-bottom: 2rem;
-  }
-
-  .status strong {
-    color: var(--brick);
-  }
-
-  .cta {
-    display: inline-block;
-    background: var(--sky);
-    color: #FFFDF7;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    transition: background 0.15s ease;
-  }
-
-  .cta:hover {
-    background: #326b9c;
-  }
-
-  .cta:focus-visible {
-    outline: 3px solid var(--brick);
-    outline-offset: 2px;
-  }
-
-  .origin-note {
-    margin-top: 2.5rem;
-    font-size: 0.8125rem;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  .origin-note a {
-    color: var(--ink-soft);
-  }
-</style>
-</head>
-<body>
-<main>
-  <img
-    class="town-graphic"
-    src="graphics\home\hometown (1).gif"
-    alt="Illustration of the KidsTown village">
-
-  <h1>KidsTown is being rebuilt.</h1>
-
-  <p class="tagline">
-    The town's still under construction —
-    check back soon.
-  </p>
-
-  <div class="status">
-    <strong>In progress</strong> — conversion underway
-  </div>
-
-  <div>
-    <a class="cta" href="https://shortstackz.github.io/KidsTownGroupProject/">
-      See our progress on GitHub
-    </a>
-  </div>
-
-  <p class="origin-note">
-    <a href="https://github.com/YOUR-ORG/KidsTownGroupProject/tree/main/original">
-      See the original site source
-    </a>
-  </p>
-</main>
-</body>
-</html>
+</BODY>
+</HTML>
