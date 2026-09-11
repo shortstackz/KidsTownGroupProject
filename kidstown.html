@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KidsTown</title>
+<meta name="description" content="KidsTown - web site produced by the Children's Literacy Project designed to promote children's literacy">
+</head>
+<body bgcolor="#EEE2B4" text="black" alink="red" link="blue" vlink="purple"
+      style="font-family: Arial, Helvetica, sans-serif;">
+
+<div align="center">
+  <b><font size="+2">Welcome to<br></font><font size="+4">KidsTown</font></b>
+</div>
+<br>
+
+<center>
+<div class="map-wrap" style="position:relative; display:inline-block;">
+  <!--
+    Genuine HTML image map — same mechanism as original/scripts/home/ktmap.pl.
+    Coordinates copied directly from that file. JS intercepts clicks to
+    route within the SPA instead of hitting kt.cgi.
+  -->
+  <img src="graphics\home\home\hometown.gif" alt="Map of KidsTown" usemap="#townmap"
+       width="310" height="318" border="1">
+  <map name="townmap" id="townmap">
+    <area shape="poly" data-module="township" alt="Township"
+      coords="10,37,27,37,38,20,53,16,54,6,71,1,74,18,85,20,88,33,106,34,105,49,94,64,33,71,17,45,7,42,10,37" href="#">
+    <area shape="poly" data-module="museum" alt="Museum"
+      coords="91,101,111,106,136,96,143,89,157,89,176,94,191,75,194,65,204,60,211,67,204,71,200,71,192,96,189,108,188,137,127,137,126,115,109,116,91,102" href="#">
+    <area shape="poly" data-module="zoo" alt="Zoo"
+      coords="168,2,216,22,236,11,241,2,260,1,260,19,241,24,242,36,284,29,308,15,308,46,292,60,231,70,193,55,166,32,161,19,162,2" href="#">
+    <area shape="poly" data-module="school" alt="School"
+      coords="237,287,238,272,239,265,239,246,233,239,257,214,257,196,263,186,267,180,270,169,285,171,282,182,271,179,273,185,279,194,281,206,285,206,305,235,301,240,300,263,279,288,242,287" href="#">
+    <area shape="poly" data-module="cityhall" alt="City Hall"
+      coords="226,145,239,132,240,109,234,99,260,95,268,87,270,70,290,72,288,87,273,84,285,93,289,101,309,118,307,124,307,161,251,173,226,144" href="#">
+    <area shape="poly" data-module="toystore" alt="Toy Store"
+      coords="7,195,8,151,35,143,36,132,86,130,86,143,90,144,91,194,62,201,35,202,7,195" href="#">
+    <area shape="poly" data-module="citypark" alt="City Park"
+      coords="7,307,4,222,35,216,61,227,63,287,10,310,7,307" href="#">
+    <area shape="poly" data-module="library" alt="Library"
+      coords="97,301,102,241,143,217,169,227,167,280,131,309,113,312,97,301" href="#">
+  </map>
+ <svg id="highlight-layer" viewBox="0 0 310 318" xmlns="http://www.w3.org/2000/svg"
+     style="position:absolute; top:0; left:0; width:310px; height:318px; pointer-events:none;">
+    <polygon id="highlight-shape" fill="rgba(255,200,0,0.4)" stroke="red" stroke-width="2" style="display:none;"></polygon>
+  </svg>
+</div>
+</center>
+<div id="region-label" style="height:1.2em; font-weight:bold; color:red; text-align:center;"></div>
+
+<br>
+<blockquote>
+<div align="center">
+<font face="arial,helvetica" size="+2">Discover Exciting KidsTown!
+<br><a href="#" data-module="citypark"><font color="#238E68">Go on a journey, </font></a>
+<a href="#" data-module="cityhall"><font color="#38B0DE">become a detective, </font></a>
+<br><a href="#" data-module="school"><font color="#FF1CAE">solve puzzles and play games, </font></a>
+<br><a href="#" data-module="zoo"><font color="#B87333">learn about animals of different regions, </font></a>
+<br><a href="#" data-module="library"><font color="blue">explore the United States, </font></a>
+and MORE ...<br><br>
+<font color="magenta">Visit<font size="+3"> KidsTown </font>Points of Interest!</font>
+<br><br>
+Just click on the picture above or<br>on the buttons or words below.</font></b>
+</div>
+</blockquote>
+
+<center>
+<table border="0" cellspacing="0" cellpadding="4">
+<tr>
+<td><a href="index.html"><img src="graphics/home/navbtn_town.gif" border="0"><center>KidsTown</center></a></td>
+<td><a href="#" data-module="cityhall"><img src="graphics/home/navbtn_cityhall.gif" border="0"><center>CityHall</center></a></td>
+<td><a href="#" data-module="school"><img src="graphics/home/navbtn_school.gif" border="0"><center>School</center></a></td>
+<td><a href="#" data-module="library"><img src="graphics/home/navbtn_library.gif" border="0"><center>Library</center></a></td>
+<td><a href="#" data-module="zoo"><img src="graphics/home/navbtn_zoo.gif" border="0"><center>Zoo</center></a></td>
+<td><a href="#" data-module="toystore"><img src="graphics/home/navbtn_toystore.gif" border="0"><center>ToyStore</center></a></td>
+<td><a href="#" data-module="citypark"><img src="graphics/home/navbtn_citypark.gif" border="0"><center>CityPark</center></a></td>
+<td><a href="#" data-module="township"><img src="graphics/home/navbtn_township.gif" border="0"><center>TownShip</center></a></td>
+<td><a href="#" data-module="museum"><img src="graphics/home/navbtn_museum.gif" border="0"><center>Museum</center></a></td>
+<td><a href="#" data-module="help"><img src="graphics/home/navbtn_help.gif" border="0"><center>Help</center></a></td>
+</tr>
+</table>
+</center>
+
+<br><br>
+<center>
+<table width="600" border="0">
+<tr><td>
+<font face="arial,helvetica"><b>KidsTown</b> is an interactive experience with
+stories, puzzles, and games, focused on enhancing the literacy of elementary
+school-aged children. Learn how the <b>University of Colorado at Denver</b>
+and the <b>Tattered Cover Book Store</b> joined together in
+<b><a href="#" data-module="about">The Making of KidsTown</a></b>.
+</font>
+</td></tr>
+</table>
+</center>
+
+<div id="toast" style="position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(120%);
+  background:#000; color:#fff; padding:0.6rem 1rem; border-radius:6px; font-family:Arial, sans-serif;
+  font-size:0.9rem; transition:transform 0.2s ease; max-width:90vw; text-align:center;"></div>
+
+<script>
+  // Where each module currently lives — this object is what
+  // src/core/router.js will eventually replace with real routing.
+  const MODULE_PATHS = {
+      citypark: "src/modules/citypark/cpark_index.html",
+    // home: "src/modules/home/index.html",
+    // toystore: "src/modules/toystore/index.html",
+    // school: "src/modules/school/index.html",
+    // township: "src/modules/township/index.html",
+     museum: "src/modules/museum/m_index.html",
+    // cityhall: "src/modules/cityhall/index.html",
+    // zoo: "src/modules/zoo/index.html",
+    // library: "src/modules/library/index.html",
+    // help: "src/modules/help/index.html",
+    // about: "src/modules/about/index.html",
+  };
+
+  const toast = document.getElementById("toast");
+  let toastTimer;
+  function showToast(text) {
+    toast.textContent = text;
+    toast.style.transform = "translateX(-50%) translateY(0)";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.style.transform = "translateX(-50%) translateY(120%)";
+    }, 2200);
+  }
+
+  function goToModule(key) {
+    const path = MODULE_PATHS[key];
+    if (path) {
+      window.location.href = path;
+    } else {
+      showToast(`${key[0].toUpperCase() + key.slice(1)} isn't built yet — check back soon!`);
+    }
+  }
+
+  const label = document.getElementById("region-label");
+  const highlightShape = document.getElementById("highlight-shape");
+
+  function highlightArea(area) {
+    if (!area) { highlightShape.style.display = "none"; return; }
+    const nums = area.coords.split(",").map(Number);
+    const points = [];
+    for (let i = 0; i < nums.length; i += 2) points.push(`${nums[i]},${nums[i + 1]}`);
+    highlightShape.setAttribute("points", points.join(" "));
+    highlightShape.style.display = "block";
+  }
+
+  document.querySelectorAll("area[data-module]").forEach(area => {
+    area.addEventListener("mouseenter", () => { label.textContent = area.alt; highlightArea(area); });
+    area.addEventListener("mouseleave", () => { label.textContent = ""; highlightArea(null); });
+    area.addEventListener("click", e => { e.preventDefault(); goToModule(area.dataset.module); });
+  });
+
+  document.querySelectorAll("a[data-module]").forEach(link => {
+    link.addEventListener("click", e => { e.preventDefault(); goToModule(link.dataset.module); });
+  });
+</script>
+
+</body>
+</html>
