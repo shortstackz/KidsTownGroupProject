@@ -1,0 +1,205 @@
+{
+  "easy": [
+    {
+      "word": "sock",
+      "sentence": "People wear socks on their feet.",
+      "graphic": "sock1.gif"
+    },
+    {
+      "word": "cow",
+      "sentence": "When a cow is hungry it eats grass.",
+      "graphic": "cow3.jpg"
+    },
+    {
+      "word": "book",
+      "sentence": "Reading a book is fun.",
+      "graphic": "book.gif"
+    },
+    {
+      "word": "pig",
+      "sentence": "A pig likes to roll in the mud.",
+      "graphic": "pig1.jpg"
+    },
+    {
+      "word": "lion",
+      "sentence": "A lion lives in Africa.",
+      "graphic": "lion1.jpg"
+    },
+    {
+      "word": "bed",
+      "sentence": "Many people sleep in beds.",
+      "graphic": "bed2.gif"
+    },
+    {
+      "word": "bat",
+      "sentence": "You can look for a bat in a cave.",
+      "graphic": "bat.jpg"
+    },
+    {
+      "word": "rain",
+      "sentence": "You get wet in the rain.",
+      "graphic": "rain.jpg"
+    },
+    {
+      "word": "fish",
+      "sentence": "My fish lives in a fishbowl.",
+      "graphic": "fish1.jpg"
+    },
+    {
+      "word": "sled",
+      "sentence": "You can use your sled in winter.",
+      "graphic": "sled.jpg"
+    },
+    {
+      "word": "cat",
+      "sentence": "Some cats chase mice.",
+      "graphic": "cat1.jpg"
+    },
+    {
+      "word": "lemon",
+      "sentence": "Most lemons are so sour that they make your mouth pucker.",
+      "graphic": "lemons2.jpg"
+    },
+    {
+      "word": "eyes",
+      "sentence": "Your eyes are part of your face.",
+      "graphic": "eyes.jpg"
+    },
+    {
+      "word": "bee",
+      "sentence": "We get honey from bees.",
+      "graphic": "bee2.jpg"
+    },
+    {
+      "word": "bread",
+      "sentence": "Bakers use wheat to make bread.",
+      "graphic": "bread.jpg"
+    }
+  ],
+
+  "medium": [
+    {
+      "word": "hammer",
+      "sentence": "A hammer is used to pound nails.",
+      "graphic": "hammer.jpg"
+    },
+    {
+      "word": "clock",
+      "sentence": "A clock is used to tell time.",
+      "graphic": "clock.jpg"
+    },
+    {
+      "word": "house",
+      "sentence": "A house has a roof.",
+      "graphic": "house.jpg"
+    },
+    {
+      "word": "fruit",
+      "sentence": "Eating fruit is good for you.",
+      "graphic": "fruit1.jpg"
+    },
+    {
+      "word": "snail",
+      "sentence": "A snail moves slowly.",
+      "graphic": "snail1.jpg"
+    },
+    {
+      "word": "swing",
+      "sentence": "It is fun to play on a swing.",
+      "graphic": "swing4.gif"
+    },
+    {
+      "word": "horse",
+      "sentence": "People ride on the back of a horse.",
+      "graphic": "horse1.jpg"
+    },
+    {
+      "word": "zebra",
+      "sentence": "A zebra has black and white stripes.",
+      "graphic": "zebra1.jpg"
+    },
+    {
+      "word": "dinosaur",
+      "sentence": "Some dinosaurs ate meat and others ate plants.",
+      "graphic": "DINO3.jpg"
+    },
+    {
+      "word": "spider",
+      "sentence": "All spiders have eight legs.",
+      "graphic": "Spider2.jpg"
+    },
+    {
+      "word": "banana",
+      "sentence": "Monkeys like to eat bananas.",
+      "graphic": "banana2.jpg"
+    },
+    {
+      "word": "computer",
+      "sentence": "Games can be played on a computer.",
+      "graphic": "comp3.jpg"
+    },
+    {
+      "word": "mouse",
+      "sentence": "A mouse is used to move the cursor on a computer screen.",
+      "graphic": "compmouse1.gif"
+    },
+    {
+      "word": "camera",
+      "sentence": "A picture is taken with a camera.",
+      "graphic": "camera1.jpg"
+    },
+    {
+      "word": "dolphin",
+      "sentence": "The sea is home to dolphins and whales.",
+      "graphic": "dolphin1.jpg"
+    },
+    {
+      "word": "volcano",
+      "sentence": "Lava flows from a volcano.",
+      "graphic": "volcano1.jpg"
+    }
+  ],
+
+  "difficult": [
+    {
+      "word": "present",
+      "sentence": "Opening a present is exciting.",
+      "graphic": "present2.gif"
+    },
+    {
+      "word": "helicopter",
+      "sentence": "A helicopter can take off vertically.",
+      "graphic": "helicopter1.gif"
+    },
+    {
+      "word": "toucan",
+      "sentence": "A toucan has a large beak.",
+      "graphic": "toucan1.jpg"
+    },
+    {
+      "word": "stethoscope",
+      "sentence": "A doctor uses a stethoscope to listen to your heart.",
+      "graphic": "stethoscope.jpg"
+    },
+    {
+      "word": "falling",
+      "sentence": "Carelessness can cause falling.",
+      "graphic": "falling3.gif"
+    },
+    {
+      "word": "squirrel",
+      "sentence": "Some squirrels eat nuts.",
+      "graphic": "squirrel1.jpg"
+    },
+    {
+      "word": "woodpecker",
+      "sentence": "A woodpecker pecks insects out of trees.",
+      "graphic": "woodpec1.jpg"
+    },
+    {
+      "word": "penguin",
+      "sentence": "Many penguins live at the South Pole.",
+      "graphic": "penguin1.jpg"
+    }
+  ]
+}
