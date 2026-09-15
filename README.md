@@ -38,7 +38,7 @@ Live Page: https://shortstackz.github.io/KidsTownGroupProject/
 - [ ] Wire root index.html to launch modules through the router
 - [ ] Establish convention for cross-module navigation (home, module-to-module)
       
- # Phase 3 — Module Conversion (not started)
+ # Phase 3 — Module Conversion (in progress)
 
 - [x] `home`
 - [ ] `toystore`
