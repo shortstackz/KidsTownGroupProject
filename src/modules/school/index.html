@@ -1,1 +1,230 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KidsTown School: Word Scramble Game</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #CCFFFF;
+            color: #000000;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 600px;
+            max-width: 90%;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .level-box {
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #000000;
+            background-color: #FFFFFF;
+            text-align: left;
+            max-width: 350px;
+        }
+
+        .level-option {
+            display: block;
+            margin: 15px 0;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #game {
+            display: none;
+        }
+
+        #picture {
+            max-width: 300px;
+            max-height: 300px;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .scrambled-word {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin: 20px 0;
+        }
+
+        #guess {
+            font-size: 20px;
+            padding: 8px;
+            text-transform: uppercase;
+            width: 220px;
+            text-align: center;
+        }
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px;
+        }
+
+        #result {
+            display: none;
+            background-color: #FFFFFF;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #result-sentence {
+            font-size: 22px;
+        }
+
+        .button-row {
+            margin-top: 20px;
+        }
+
+        .button-row button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEVEL SELECTION -->
+    <div id="level-screen">
+
+        <h1>Welcome to the Word Scramble Game</h1>
+
+        <h2>
+            Please choose a level of difficulty.
+            <br>
+            Click "Start Game" to begin playing.
+        </h2>
+
+        <div class="level-box">
+
+            <label class="level-option">
+                <input type="radio" name="level" value="easy" checked>
+                Short Words
+            </label>
+
+            <label class="level-option">
+                <input type="radio" name="level" value="medium">
+                Longer Words
+            </label>
+
+            <label class="level-option">
+                <input type="radio" name="level" value="difficult">
+                Longest Words
+            </label>
+
+            <div style="text-align: center;">
+                <button id="start-button">Start Game</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCRAMBLE GAME -->
+    <div id="game">
+
+        <h1>Word Scramble Game</h1>
+
+        <h2>What is this picture?</h2>
+
+        <img id="picture" src="" alt="Guess the word">
+
+        <p>
+            <strong>Scrambled Word:</strong>
+        </p>
+
+        <div id="scrambled-word" class="scrambled-word">
+            ----
+        </div>
+
+        <label for="guess">
+            Enter Guess:
+        </label>
+
+        <br><br>
+
+        <input
+            type="text"
+            id="guess"
+            autocomplete="off"
+            maxlength="30"
+        >
+
+        <br><br>
+
+        <button id="submit-guess">Continue</button>
+
+        <p id="message"></p>
+
+        <p>
+            <strong>Your Last Guess:</strong>
+            <span id="last-guess">None</span>
+        </p>
+
+        <p>
+            <strong>Tries:</strong>
+            <span id="tries">0</span>
+        </p>
+
+    </div>
+
+
+    <!-- CORRECT ANSWER -->
+    <div id="result">
+
+        <h2>That's correct!</h2>
+
+        <p>
+            The word is
+            <strong id="correct-word"></strong>.
+        </p>
+
+        <p>
+            Good job! You got it in
+            <strong id="final-tries"></strong>
+            tries!
+        </p>
+
+        <img id="result-picture" src="" alt="Word picture">
+
+        <p id="result-sentence"></p>
+
+        <div class="button-row">
+            <button id="play-again">Play Again</button>
+            <button id="change-level">Change Level</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="school.js"></script>
+
+</body>
+</html>
