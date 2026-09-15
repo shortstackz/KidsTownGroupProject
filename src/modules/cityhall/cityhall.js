@@ -16,7 +16,7 @@ const ktini = {
 
 // Read KEY from the browser URL
 const params = new URLSearchParams(window.location.search);
-const key = params.get("KEY") || "1000";
+const key = params.get("KEY") || "5000";
 
 ktvars.KEY = key;
 
