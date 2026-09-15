@@ -16,15 +16,15 @@ Live Page: https://shortstackz.github.io/KidsTownGroupProject/
 
 
 # Phase 1 — Auditing (in progress)
-- [ ] Audit `home` — inventory scripts/data, note behavior in docs/MODULE_INVENTORY.md
+- [x] Audit `home` — splash page
 - [ ] Audit `toystore`
-- [ ] Audit `school`
+- [x] Audit `school`
 - [ ] Audit `township` (largest — 52 files)
-- [ ] Audit `museum`
+- [x] Audit `museum`
 - [ ] Audit `cityhall`
 - [x] Audit `citypark` — done as part of building the working example
 - [ ] Audit `zoo`
-- [ ] Audit `library`
+- [x] Audit `library`
 - [ ] Read cgi-bin/kt.cgi and kt.db, write up routing in docs/ROUTING_MAP.md
 - [ ] Read cgi-bin/kt.ini, note config values each module depends on
 
@@ -40,23 +40,23 @@ Live Page: https://shortstackz.github.io/KidsTownGroupProject/
       
  # Phase 3 — Module Conversion (not started)
 
-- [ ] `home`
+- [x] `home`
 - [ ] `toystore`
-- [ ] `school`
+- [x] `school`
 - [ ] `township` (biggest — consider sub-issues per section)
-- [ ] `museum`
+- [x] `museum`
 - [ ] `cityhall`
 - [ ] `zoo`
-- [ ] `library`
+- [x] `library`
 - [x] `citypark` — done, needs router hookup once Phase 1 lands
 
 ### Per-module checklist (repeat for each)
 
-- [ ] Write tools/parse_<module>.py
-- [ ] Convert original/data/<module>/ → src/modules/<module>/*.json
-- [ ] Copy graphics: original/graphics/<module>/ → graphics/<module>/
-- [ ] Build src/modules/<module>/index.html
-- [ ] Test standalone with Live Server
+- [x] Write tools/parse_<module>.py
+- [x] Convert original/data/<module>/ → src/modules/<module>/*.json
+- [x] Copy graphics: original/graphics/<module>/ → graphics/<module>/
+- [x] Build src/modules/<module>/index.html
+- [x] Test standalone with Live Server
 - [ ] Wire into shared router/shell
 
 # Phase 3 — Integration & QA (not started)
