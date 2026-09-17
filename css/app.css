@@ -1,0 +1,91 @@
+/* app.css
+   -----------------------------------------------------------------------
+   The original pages set BGCOLOR="#EEE2B4" / TEXT="BLACK" and used
+   <FONT FACE="arial,helvetica"> directly on the <BODY> tag of every page.
+   This stylesheet reproduces the same look globally instead of repeating
+   those attributes in every page module.
+------------------------------------------------------------------------ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #EEE2B4;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: blue; }
+a:visited { color: purple; }
+a:active { color: red; }
+
+#app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.center { text-align: center; }
+.left { text-align: left; }
+.top { vertical-align: top; }
+.clear { clear: both; }
+
+.huge { font-size: 2em; }
+.huge2 { font-size: 1.6em; }
+.big { font-size: 1.3em; }
+.big2 { font-size: 1.15em; }
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+.townmap { border: 0; }
+
+.navbar {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.navbar td {
+  text-align: center;
+  padding: 4px 6px;
+  font-size: 0.85em;
+}
+.navbar img {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+
+.help-btn-left {
+  float: left;
+  margin-right: 10px;
+}
+.help-btn-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.about-project-box {
+  border: 2px dashed #8a7530;
+  background: #fff8e0;
+  padding: 12px 16px;
+  margin: 16px 0;
+}
+
+.participants-grid td {
+  width: 25%;
+  font-size: 0.9em;
+}
+.p-year { font-size: 1.1em; }
+.p-dept { font-size: 0.8em; }
+
+.ct-img-left {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+.ct-img-right {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+blockquote { margin: 0 0 0 20px; }
+
+table { border-collapse: collapse; }

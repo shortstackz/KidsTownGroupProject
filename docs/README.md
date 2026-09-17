@@ -21,7 +21,7 @@ Live Page: https://shortstackz.github.io/KidsTownGroupProject/
 - [x] Audit `school`
 - [ ] Audit `township` (largest — 52 files)
 - [x] Audit `museum`
-- [ ] Audit `cityhall`
+- [x] Audit `cityhall`
 - [x] Audit `citypark` — done as part of building the working example
 - [ ] Audit `zoo`
 - [x] Audit `library`
@@ -45,7 +45,7 @@ Live Page: https://shortstackz.github.io/KidsTownGroupProject/
 - [x] `school`
 - [ ] `township` (biggest — consider sub-issues per section)
 - [x] `museum`
-- [ ] `cityhall`
+- [x] `cityhall`
 - [ ] `zoo`
 - [x] `library`
 - [x] `citypark` — done, needs router hookup once Phase 1 lands
