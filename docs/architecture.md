@@ -1,187 +1,117 @@
-# KidsTown: CGI/Perl → SPA Architecture Mapping
+# KidsTown Architecture
 
-This document maps every concept in the original 1998 CGI/Perl
-implementation to its equivalent in the new browser-based JavaScript
-single-page application (SPA), so the conversion can continue
-incrementally with a clear reference for "what does the old X become?"
+How the original 1998 CGI/Perl site maps to this JavaScript conversion, and
+what's actually true in the repo right now (verified directly against the
+files, not assumed).
 
-## Status
+## The original site, in short
 
-| Area | Original KEY(s) | Status | Perl reference | JS implementation |
-|---|---|---|---|---|
-| Visitor splash | (static `index.html`) | ✅ Ported | `index-cgi-original.html` | `js/pages/home.js` → `splash()` |
-| Home / map | 1000 | ✅ Ported | `scripts/home/{mainPgHdr,ktmap,mainPgTxt,mainPgFtr}.pl` | `js/pages/home.js` |
-| Help | 1010 | ✅ Ported | `scripts/home/{helphdr,helptxt}.pl` | `js/pages/help.js` |
-| About | 1100 | ✅ Ported | `scripts/home/about.pl` | `js/pages/about.js` |
-| Participants | 1200 | ✅ Ported | `scripts/home/participants.pl` | `js/pages/participants.js` |
-| Nav bar (shared) | (every page) | ✅ Ported | `scripts/home/navbar.pl` | `js/components/navbar.js` |
-| City Park | 2000, 2010 | ✅ Ported (full branching story) | `scripts/citypark/{main,page}.pl`, `data/citypark/page1-18` | `js/pages/citypark.js`, `js/data/citypark-story.js` |
-| TownShip | 3000+ | 🚧 Stub | `scripts/township/*.pl` | `js/pages/stub.js` |
-| School | 4000+ | 🚧 Stub | `scripts/school/*.pl` | `js/pages/stub.js` |
-| City Hall | 5000+ | 🚧 Stub | `scripts/cityhall/*.pl` | `js/pages/stub.js` |
-| Library | 6000+ | 🚧 Stub | `scripts/library/*.pl` | `js/pages/stub.js` |
-| Toy Store | 7000+ | 🚧 Stub | `scripts/toystore/*.pl` | `js/pages/stub.js` |
-| Museum | 8000+ | 🚧 Stub | `scripts/museum/*.pl` | `js/pages/stub.js` |
-| Zoo | 9000+ | 🚧 Stub | `scripts/zoo/*.pl` | `js/pages/stub.js` |
-| Bookmark redirect (KEY=101) | 101 | ❌ Not needed | `scripts/home/passer.pl` | n/a — see note below |
+- `kt.cgi` was the single entry point. Every link/button on the site was a
+  query string like `?KEY=2000`.
+- `kt.db` was a lookup table: KEY → an ordered list of Perl scripts to run.
+  Their combined output was the page.
+- `kt.ini` held path/config aliases the scripts used.
+- Each "zone" (City Park, Museum, School, ...) had its own `scripts/<zone>/*.pl`
+  and `data/<zone>/*` flat-file data.
+- Navigation state (like "where did I come from, for the Back button") was
+  passed as a `#from#`-style query parameter on every link.
 
-"🚧 Stub" pages still render (with the nav bar and image map fully
-linking to them) so nothing in the map or nav bar is ever a dead link —
-they just say "coming soon" and point back at the relevant `scripts/<zone>/*.pl`
-files as the porting reference. That satisfies the incremental-growth
-goal: the entry experience (map + nav + images) is complete first, and
-each zone's real content can be ported behind its existing link without
-ever touching the entry point again.
+## This conversion, in short
 
-## Concept-by-concept mapping
+- No server, no `kt.cgi`. Static HTML/CSS/JS, served from GitHub Pages.
+- `index.html` (repo root) is the splash/visitor-center page. It links to
+  `homepage.html` (also repo root), which has the real KidsTown image map
+  and nav bar.
+- `homepage.html` contains a `MODULE_PATHS` object — this is the current,
+  temporary stand-in for `kt.db`. It maps a module key (`citypark`,
+  `museum`, ...) to the HTML file that module lives at. There's no shared
+  router yet (`src/core/router.js` doesn't exist) — each module is its own
+  full page load.
+- Each finished zone lives at `src/modules/<zone>/`, and generally follows
+  one of two patterns:
+  - **External data** (`.js` fetches a `.json`): Museum, School, City Park.
+    This is the preferred pattern — content and behavior are separate, so a
+    typo or a story change doesn't mean re-reading code.
+  - **Inline data** (`.js` has the content baked into it, or the old
+    `.html` still has an inline `<script>` with the data in it): City Hall,
+    Library, Zoo. Works, but harder to hand-edit or audit.
+- Per-page navigation history (the original's `#from#` trick) is
+  reimplemented in City Park as a real in-memory array (`history = []` in
+  `c_park.js`), popped on Back.
 
-### 1. The dispatcher: `kt.cgi` → `js/router.js`
+## Module status (verified against the actual repo contents)
 
-The original `cgi-bin/kt.cgi` was a single Perl script that:
-
-1. Read `QUERY_STRING` (GET) or `STDIN` (POST) — `MergeGetPost()`.
-2. Split `KEY=1000&name=Sam` into a hash (`%ktvars`) — `String2hash()`.
-3. Looked up every line in `kt.db` whose key matched `#KEY#`.
-4. For each matching line, resolved a `.pl` file path (via `kt.ini`
-   directory aliases) and `eval`'d it, letting it `print` HTML.
-5. Concatenated everything printed into one `<HTML>...</HTML>` response.
-6. If the `KEY` wasn't found in `kt.db`, fell back to `KEY=1000`.
-
-`js/router.js` does the exact same five steps, client-side, on every
-`hashchange` event instead of on every HTTP request:
-
-| Step | Perl (`kt.cgi`) | JavaScript (`router.js`) |
+| Zone | Status | Notes |
 |---|---|---|
-| Read request | `MergeGetPost()` | `location.hash` |
-| Parse params | `String2hash()` | `parseHash()` |
-| Look up handlers | grep lines from `kt.db` | `siteDb[KEY]` (`site-db.js`) |
-| Run handlers | `EvalFile()` (`eval` on file text) | Call each function directly |
-| Fallback | `KEY = "#1000#"` | `siteDb[DEFAULT_KEY]` |
-| Emit output | `print` to STDOUT | `appEl.innerHTML = ...` |
+| Home (splash + map) | ✅ Working | `index.html` + `homepage.html`, both at repo root as GitHub Pages requires |
+| Museum | ✅ Working | `index.html` + `museum.js` + `museum.json`, correctly linked |
+| City Park | ✅ Working | `index.html` + `c_park.js` + `citypark.json`, correctly linked — see "City Park, in detail" below for what it took to get here |
+| School | 🚧 Built | `index.html` + `school.js` + `school.json`, correctly linked |
+| City Hall | 🚧 Built | `cityhall_index.html` + `cityhall.js` (inline data), correctly linked |
+| Library | 🚧 Built | `index.html` + `library.js` (inline data), correctly linked |
+| Zoo | 🚧 Built, **but unreachable from the site** | 6 pages (`index.html`, `africa.html`, `australia.html`, `ocean.html`, `polar.html`, `world.html`) — the most complete module in the repo — but its entry in `homepage.html`'s `MODULE_PATHS` is commented out (`//zoo: ...`), so clicking Zoo on the map or nav bar just shows the "isn't built yet" toast. See "Most urgent fix" below. |
+| Township | ⬜ Not started | Largest zone in the original (~52 files, mostly shared country-matching mini-games) |
+| Toy Store | ⬜ Not started | |
+| Help | ⬜ Not started | |
+| About | ⬜ Not started | **The assignment's grading notes require an About section with a direct GitHub Pages link to the SPA entry point. No `about` module or page currently exists**, and its `MODULE_PATHS` entry is commented out. This is a real content gap, not just a wiring bug. |
 
-### 2. The routing table: `kt.db` → `js/site-db.js`
+## Most urgent fix: Zoo is done but not linked
 
-`kt.db` was a flat text file where every line was
-`#KEY#script/path.pl optional=args`, and a single `KEY` could map to
-*several* lines (header script, then content script, then nav bar
-script, etc.), all run in order and concatenated.
-
-`js/site-db.js` is that same table, expressed as a JS object whose keys
-are the `KEY` values and whose values are **ordered arrays of render
-functions** — one array entry per line `kt.db` used to have for that
-`KEY`. For example, the original:
-
-```
-#1000#homescripts/mainPgHdr.pl
-#1000#homescripts/ktmap.pl
-#1000#homescripts/mainPgTxt.pl
-#1000#homescripts/navbar.pl HelpState=1010
-#1000#homescripts/mainPgFtr.pl
-```
-
-becomes:
-
+In `homepage.html`, inside `MODULE_PATHS`:
 ```js
-1000: [home.header, home.map, home.text, (v) => navbar(v, { HelpState: 1010 }), home.footer],
+//zoo: "src/modules/zoo/index.html",
 ```
+That line is commented out, so the key `zoo` doesn't exist on the object at
+all. Clicking the Zoo area on the map or the Zoo button in the nav bar calls
+`goToModule("zoo")`, finds nothing in `MODULE_PATHS`, and falls through to
+the "Zoo isn't built yet — check back soon!" toast — even though Zoo is
+actually the most complete module in the repo. Un-commenting that one line
+is the fix.
 
-Extra args like `HelpState=1010` (originally appended after the script
-path and re-parsed by `String2hash`) become ordinary function arguments.
+## City Park, in detail
 
-### 3. Directory/URL configuration: `kt.ini` → `js/config.js`
+City Park is the one module that went through several rounds of breakage
+before landing in its current, verified-working state. Documenting the
+history here so nobody "fixes" it back into a broken state:
 
-`kt.ini` told every Perl script where graphics, scripts, and data lived
-on the server's filesystem, plus a few external URLs. Since the SPA has
-no filesystem to resolve and no per-zone script directories to `eval`,
-`js/config.js` keeps only what's still meaningful: relative graphics
-paths (served as static files) and the external links (Tattered Cover,
-CU Denver, etc.). It also adds a `github` section with no CGI
-equivalent — the live Pages URL and repo URL, used on the About page.
+1. Original bug: `tools/citypark.py`'s link-stripping regex replaced
+   inline `<A HREF>` links with an empty string instead of the link's
+   text, corrupting sentences ("Let's ." instead of "Let's continue.",
+   "or ?" instead of "Willow Street or Cherry Street?").
+2. A rewrite (`c_park.js`) was added that expected a different JSON shape
+   (`{intro: {...}, pages: {"1": {...}, ...}}`) than what `citypark.json`
+   actually contained at the time (a flat array), and `index.html` wasn't
+   even loading `c_park.js` — it still ran its own old inline script.
+3. Both of those are now fixed. `index.html` loads `c_park.js`;
+   `citypark.json` matches the shape `c_park.js` expects, rebuilt directly
+   from `data/citypark/page1`–`page18` with the link-stripping bug gone.
+4. `homepage.html`'s `MODULE_PATHS.citypark` was still pointing at the old
+   filename (`cpark_index.html`) after the module's `index.html` was
+   renamed — that's fixed too, it now points at `src/modules/citypark/index.html`.
 
-### 4. Per-page scripts (`scripts/<zone>/*.pl`) → `js/pages/*.js`
+Verified end-to-end (not just read): a headless test loads the real
+`index.html` + `c_park.js` + `citypark.json` together, submits the name
+form, clicks a story choice, and clicks Back — all work, no errors.
 
-Every Perl script that used to `print` an HTML fragment is now a JS
-function that `return`s an HTML string. Server-side templating
-(`$ktini{...}`, `$ktvars{...}` interpolated into heredocs) becomes
-ordinary JavaScript template literals reading from `config` and the
-parsed hash `vars`.
+## Known gaps (not fixable from what's in the repo)
 
-### 5. Per-zone content data (`data/<zone>/*`) → `js/data/*.js`
+- `original/` is meant to be the untouched 1998 site for reference, but
+  it's missing `original/cgi-bin/kt.cgi` (the actual dispatcher) and
+  `original/data/ss1.dat`, and `original/data/` doesn't have City Park's
+  page1 or page10. The top-level `scripts/`/`data/` folders (organized
+  per-zone) are more complete than `original/` — don't delete them as
+  "duplicates."
+- `tools/citypark.py` and `tools/museum.py` both hardcode
+  `SRC = "kidstown_cgi-main/data/<zone>"`, a path that doesn't exist in
+  this repo. If either script needs to be re-run (e.g. after recovering
+  missing original data), fix that path first — for City Park, note the
+  real data also sits one level deeper than expected
+  (`data/citypark/citypark/page1`, not `data/citypark/page1`).
+- `css/app.css` exists in the repo but isn't linked from any HTML page yet.
 
-The City Park story (`data/citypark/page1`..`page18`) used
-`#placeholder#` tokens (`#name#`, `#xname#`, `#page#`, `#from#`,
-`#ktini{engine}#`, `#ktini{cityparkgraphics}#`) that
-`scripts/citypark/page.pl` filled in with regex substitution at request
-time. `js/data/citypark-story.js` keeps the same 18 pages and the same
-branching structure, but each page is a small function that receives
-the current `vars` directly and interpolates them with template
-literals — no substitution pass needed, because the "template" and the
-"values" are just JS in the same scope.
+## Not yet done
 
-### 6. State / continuity: query string → hash fragment
-
-The CGI version passed state (`name`, `page`, `from`) forward on every
-link as GET query-string parameters, because each click was a fresh,
-stateless HTTP request. The SPA keeps exactly the same model — state
-still travels as `key=value` pairs on every link — just relocated from
-`?query` (sent to a server) to `#hash` (read by `router.js` in the
-browser). This is why City Park links still look almost identical to
-the originals:
-
-```
-Perl:  href="#ktini{engine}#?KEY=2010&page=3&name=#xname#&from=2"
-JS:    href="#KEY=2010&page=3&name=Sam&from=2"
-```
-
-### 7. The image map
-
-`scripts/home/ktmap.pl` printed an `<IMG USEMAP>` with eight `<AREA
-SHAPE="POLY" COORDS="...">` regions pointing at `kt.cgi?KEY=NNNN`.
-`js/pages/home.js` reproduces the same `hometown.gif`, the same eight
-polygons with **identical COORDS values**, and the same destinations —
-only the `href` targets changed, from `kt.cgi?KEY=NNNN` to `#KEY=NNNN`.
-
-### 8. Things that don't carry over
-
-- **`passer.pl` (KEY=101/102)** existed to let old bookmarks pointing
-  at a stale `index.html` get redirected back through `kt.cgi`. There's
-  only one HTML entry point now (`index.html`, loading `js/app.js`), so
-  this indirection has no SPA equivalent and was intentionally dropped.
-- **`kt.db`'s per-request `eval`** of Perl source is inherently a
-  server-side, dynamic-code-loading pattern. Its closest SPA analogue
-  is simply having all page modules statically imported up front in
-  `site-db.js` — there's no need (or safe way) to `eval` arbitrary code
-  in the browser for this.
-- **`cgi-bin/kt.db`'s SQL-like flat-file lookup** (`grep` for a key
-  prefix) is replaced by a plain JS object property lookup, which is
-  the natural equivalent of an in-memory key/value table.
-
-## Working with the legacy Perl
-
-`cgi-bin/`, `scripts/`, and `data/` (the original CGI/Perl
-implementation) are kept in this repository purely as the **reference
-model** for zones that haven't been ported yet — nothing here executes
-them; GitHub Pages only serves static files, so the `.pl`/`.cgi` files
-are inert. When you're ready to port the next zone:
-
-1. Read the corresponding `scripts/<zone>/*.pl` files and the `kt.db`
-   lines for that `KEY` range — that's your spec.
-2. Add a new module under `js/pages/`.
-3. Replace that zone's `stub(...)` entry in `js/site-db.js` with your
-   new render function(s), following the same "array of functions per
-   KEY" pattern City Park and Home already use.
-4. If the zone has data files (like City Park's `data/citypark/page*`),
-   convert them into a `js/data/<zone>-*.js` module the same way
-   `citypark-story.js` did.
-
-If you'd rather keep the legacy Perl tree out of your main branch
-entirely (so `main` only ever contains the live static site), move
-`cgi-bin/`, `scripts/`, and `data/` to a dedicated branch (e.g.
-`legacy-cgi`) in your actual GitHub repository and keep `main` /
-whichever branch GitHub Pages builds from limited to `index.html`,
-`css/`, `js/`, and `graphics/`. That's a repository operation to
-perform on your end (git branch management isn't something this
-generated tree does for you), but the file layout here is already
-split cleanly enough (`cgi-bin/`, `scripts/`, `data/` vs. `index.html`,
-`css/`, `js/`, `graphics/`) to make that split a straightforward `git
-mv` + branch push.
+- No shared router (`src/core/router.js`) — `MODULE_PATHS` in
+  `homepage.html` is a stand-in, not the real thing.
+- Township and Toy Store haven't been started.
+- No About page/section with the GitHub Pages link the assignment asks for.
